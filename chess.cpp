@@ -4,8 +4,8 @@ std::string chessboard[8][8] = {
         {"RKB", "KNB", "BWB", "QNB", "KGB", "BBB", "KNB", "RKB"},
         {"PWB", "PWB", "PWB", "PWB", "PWB", "PWB", "PWB", "PWB"},
         {"", "", "", "", "", "", "", ""},
-        {"", "", "", "PWB", "", "", "", ""},
-        {"", "PWB", "", "", "", "", "", ""},
+        {"", "", "", "", "", "", "", ""},
+        {"", "", "", "", "", "", "", ""},
         {"", "", "", "", "", "", "", ""},
         {"PWW", "PWW", "PWW", "PWW", "PWW", "PWW", "PWW", "PWW"},
         {"RKW", "KNW", "BWW", "QNW", "KGW", "BBW", "KNW", "RKW"},
@@ -91,6 +91,54 @@ std::list<Coordinate> rockMovePossible(int x, int y, char color) {
             moves.push_back(Coordinate{x, i});
         } else if (isOppenent(color, x, i)) {
             moves.push_back(Coordinate{x, i});
+            break;
+        } else {
+            break;
+        }
+    }
+    return moves;
+}
+
+std::list<Coordinate> bishopMove(int x, int y, char color) {
+    std::list<Coordinate> moves;
+    // Diagonale Gauche
+    for(int i = 1; x+i < 8 && y+i < 8; i++) {
+        if(isVoidCase(x+i, y+i)) {
+            moves.push_back(Coordinate{x+i, y+i});
+        } else if (isOppenent(color, x+i, y+i)) {
+            moves.push_back(Coordinate{x+i, y+i});
+            break;
+        } else {
+            break;
+        }
+    }
+    for(int i = 1; x-i >= 0 && y-i >= 0; i++) {
+        if(isVoidCase(x-i, y-i)) {
+            moves.push_back(Coordinate{x-i, y-i});
+        } else if (isOppenent(color, x-i, y-i)) {
+            moves.push_back(Coordinate{x-i, y-i});
+            break;
+        } else {
+            break;
+        }
+    }
+
+    // Diagonale Droite
+    for(int i = 1; x+i < 8 && y-i >= 0; i++) {
+        if(isVoidCase(x+i, y-i)) {
+            moves.push_back(Coordinate{x+i, y-i});
+        } else if (isOppenent(color, x+i, y-i)) {
+            moves.push_back(Coordinate{x+i, y-i});
+            break;
+        } else {
+            break;
+        }
+    }
+    for(int i = 1; x-i >= 0 && x+i < 8 ; i++) {
+        if(isVoidCase(x+i, y-i)) {
+            moves.push_back(Coordinate{x+i, y-i});
+        } else if (isOppenent(color, x+i, y-i)) {
+            moves.push_back(Coordinate{x+i, y-i});
             break;
         } else {
             break;
