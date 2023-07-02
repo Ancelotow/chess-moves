@@ -30,6 +30,7 @@ bool isVoidCase(int x, int y);
 
 std::list<Coordinate> pawnMovePossible(int x, int y, char color);
 std::list<Coordinate> rockMovePossible(int x, int y, char color);
-std::list<Coordinate> bishopMove(int x, int y, char color);
+std::list<Coordinate> bishopMovePossible(int x, int y, char color);
+std::list<Coordinate> queenMovePossible(int x, int y, char color);
 
 #endif

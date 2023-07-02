@@ -99,7 +99,7 @@ std::list<Coordinate> rockMovePossible(int x, int y, char color) {
     return moves;
 }
 
-std::list<Coordinate> bishopMove(int x, int y, char color) {
+std::list<Coordinate> bishopMovePossible(int x, int y, char color) {
     std::list<Coordinate> moves;
     // Diagonale Gauche
     for(int i = 1; x+i < 8 && y+i < 8; i++) {
@@ -144,5 +144,20 @@ std::list<Coordinate> bishopMove(int x, int y, char color) {
             break;
         }
     }
+    return moves;
+}
+
+std::list<Coordinate> queenMovePossible(int x, int y, char color) {
+    std::list<Coordinate> moves;
+    std::list<Coordinate> diaMoves = bishopMovePossible(x, y, color);
+    for(Coordinate move : diaMoves) {
+        moves.push_back(move);
+    }
+    diaMoves.clear();
+    std::list<Coordinate> linMoves = rockMovePossible(x, y, color);
+    for(Coordinate move : linMoves) {
+        moves.push_back(move);
+    }
+    linMoves.clear();
     return moves;
 }
